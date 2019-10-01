@@ -13,13 +13,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import json
 
-# Import config file
-with open("/etc/blog_config.json") as config_file:
-    config = json.load(config_file)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Import config file
+with open(os.path.join(BASE_DIR, "secret/blog_config.json")) as config_file:
+    config = json.load(config_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -28,9 +27,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['68.183.76.99','.storme.no','.heldorstorm.no']
+ALLOWED_HOSTS = ['127.0.0.1','68.183.76.99','.storme.no','.heldorstorm.no']
 
 
 # Application definition

@@ -1,2 +1,9 @@
 venv/
 static/
+secret/
+
+__pycache__/*
+
+__pycache__/
+
+*.pyc
