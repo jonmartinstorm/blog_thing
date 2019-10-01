@@ -3,7 +3,7 @@ static/
 secret/
 
 # Different settings on production...
-# settings.py
+blog_thing/settings.py
 
 # We dont need the different pyc files
 __pycache__/*
