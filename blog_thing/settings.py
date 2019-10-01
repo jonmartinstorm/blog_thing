@@ -17,11 +17,11 @@ import json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Import config file
-#with open(os.path.join(BASE_DIR, "secret/blog_config.json")) as config_file:
-#    config = json.load(config_file)
+with open(os.path.join(BASE_DIR, "secret/blog_config.json")) as config_file:
+    config = json.load(config_file)
 
-with open(os.path.join("etc/blog_config.json")) as config_file:
-     config = json.load(config_file)
+#with open(os.path.join("etc/blog_config.json")) as config_file:
+#     config = json.load(config_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -30,10 +30,10 @@ with open(os.path.join("etc/blog_config.json")) as config_file:
 SECRET_KEY = config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-#ALLOWED_HOSTS = ['127.0.0.1']
-ALLOWED_HOSTS = ['68.183.76.99','.storme.no','.heldorstorm.no']
+ALLOWED_HOSTS = ['127.0.0.1']
+#ALLOWED_HOSTS = ['68.183.76.99','.storme.no','.heldorstorm.no']
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
 ]
 
 MIDDLEWARE = [
