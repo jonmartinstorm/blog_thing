@@ -2,8 +2,10 @@ venv/
 static/
 secret/
 
+# Different settings on production...
+# settings.py
+
+# We dont need the different pyc files
 __pycache__/*
-
 __pycache__/
-
 *.pyc
