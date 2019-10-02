@@ -13,18 +13,6 @@ from .models import BlogPost
 #     }
 #     return render(request, "home.html", context)
 
-def about_page(request):
-    context = {
-        "title": "About us",
-    }
-    return render(request, "about.html", context)
-
-def contact_page(request):
-    context = {
-        "title": "Contact us",
-    }
-    return render(request, "contact.html", context)
-
 def blog_post_list_view(request):
     qs = BlogPost.objects.all()
     template_name = "blog_post_list.html"
