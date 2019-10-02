@@ -1,5 +1,5 @@
 from django.db import models
-
+#test
 class BlogPost(models.Model):
     slug = models.SlugField(unique=True)
     title = models.TextField()
