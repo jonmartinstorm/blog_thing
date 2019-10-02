@@ -24,7 +24,7 @@ def blog_post_list_view(request):
 class BlogPostListView(ListView):
     model = BlogPost
     paginate_by = 20
-    template_name = "blog_post_list.html"
+    # template_name = "blog_post_list.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,7 +40,7 @@ def blog_post_create_view(request):
 
 class BlogPostDetailView(DetailView):
     model = BlogPost
-    template_name = "blog_post_detail.html"
+    # template_name = "blog_post_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
