@@ -2,8 +2,16 @@
 
 
 {% block content %}
+<div class = 'container'>
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <h1>{{ object.title }}</h1>
+            <p>{{ object.content }}</p>
+            <p>Todays date: {{ now|date:'j.b Y -- c' }}</p>
+            <!-- https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date -->
+        </div>
+    </div>
+</div>
 
-<h1>{{ object.title }}</h1>
-<p>{{ object.content }}</p>
 
 {% endblock %}
