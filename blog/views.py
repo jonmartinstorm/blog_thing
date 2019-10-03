@@ -4,6 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import BlogPostForm
 from .models import BlogPost
@@ -29,10 +31,11 @@ def blog_post_create_view(request):
     }
     return render(request, template_name, context)
 
-class BlogCreateFormView(FormView):
+class BlogCreateFormView(LoginRequiredMixin, FormView):
     template_name = "blog/create_test.html"
     form_class = BlogPostForm
     success_url = '.'
+    login_url = '/'
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
