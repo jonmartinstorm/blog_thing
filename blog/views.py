@@ -7,7 +7,7 @@ from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import BlogPostForm
+from .forms import BlogPostForm, BlogPostModelForm
 from .models import BlogPost
 
 class BlogPostListView(ListView):
@@ -19,32 +19,30 @@ class BlogPostListView(ListView):
         context['now'] = timezone.now()
         return context
 
-def blog_post_create_view(request):
-    template_name = "blog/create_test.html"
-    form = BlogPostForm(request.POST or None)
-    if form.is_valid():
-        print(form.cleaned_data)
-        form = BlogPostForm()
-    context = {
-        "title": "Create new post",
-        "form": form,
-    }
-    return render(request, template_name, context)
+# def blog_post_create_view(request):
+#     template_name = "blog/create_test.html"
+#     form = BlogPostForm(request.POST or None)
+#     if form.is_valid():
+#         print(form.cleaned_data)
+#         form = BlogPostForm()
+#     context = {
+#         "title": "Create new post",
+#         "form": form,
+#     }
+#     return render(request, template_name, context)
 
 class BlogCreateFormView(LoginRequiredMixin, FormView):
-    template_name = "blog/create_test.html"
-    form_class = BlogPostForm
+    template_name = "blog/create.html"
+    form_class = BlogPostModelForm
     success_url = '.'
     login_url = '/'
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
+        form.save()
         return super().form_valid(form)
 
 class BlogPostDetailView(DetailView):
     model = BlogPost
-    # template_name = "blog_post_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
