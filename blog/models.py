@@ -11,8 +11,6 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
 
-def slug_save(sender, instance, *args, **kwargs):
-        if not instance.slug:
-            instance.slug = unique_slug_generator(instance, instance.title, instance.slug)
-
-pre_save.connect(slug_save, sender=BlogPost)
+    def save(self):
+        self.slug = unique_slug_generator(self, self.title)
+        super(BlogPost, self).save()
