@@ -10,6 +10,9 @@
             <p>{{ object.content }}</p>
             <p>Todays date: {{ now|date:'j.b Y -- c' }}</p>
             <!-- https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date -->
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'blog:post-update' slug=object.slug %}">Edit</a>
+            {% endif %}
         </div>
     </div>
 </div>

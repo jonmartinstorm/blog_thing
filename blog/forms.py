@@ -16,6 +16,8 @@ class BlogPostModelForm(forms.ModelForm):
     def clean_title(self, *args, **kwargs):
         title = self.cleaned_data.get("title")
         qs = BlogPost.objects.filter(title__iexact=title)
+        if self.instance is not None:
+            qs = qs.exclude(pk=self.instance.pk)
         if qs.exists():
             raise forms.ValidationError("This title exists, use another")
         return title
