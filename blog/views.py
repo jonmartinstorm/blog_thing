@@ -13,6 +13,9 @@ class BlogPostListView(ListView):
     model = BlogPost
     paginate_by = 20
 
+    def get_queryset(self):
+        return BlogPost.objects.all().published()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()

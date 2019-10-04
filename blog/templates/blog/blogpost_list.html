@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class = 'container-fluid'>
-    <div class="card-group">
-        <h1>Blog post list:</h1>
+    <h1>Blog post list:</h1>
+    <div class="card-columns">
         {% for post in object_list %}
             {% include "blog/list-inline.html" with post=post %}
         {% endfor %}

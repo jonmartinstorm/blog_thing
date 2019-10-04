@@ -3,8 +3,10 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
-        <p class='card-text'>{{ post.author}}</p>
-        <p class='card-text'>{{ post.content}}</p>
-        <a href="{% url 'blog:post-detail' slug=post.slug %}">show</a>
+        <p class='card-text'>
+            <small class="text-muted">{{ post.author }} - {{ post.publish_date|date }}</small>
+            {{ post.content|linebreaks|truncatewords:30 }}
+        </p>
+        <a href="{% url 'blog:post-detail' slug=post.slug %}" class="card-link">show</a>
     </div>
 </div>
