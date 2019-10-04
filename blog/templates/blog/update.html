@@ -4,16 +4,15 @@
 
 {% load crispy_forms_tags %}
 
-<div class = 'container'>
-    <div class="row">
-        <div class="col-6 mx-auto">
-            <h1>Update post</h1>
-            <p>Author: {{ object.author }}</p>
-            <form method="POST">{% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-dark">Send</button>
-            </form>
-        </div>
+<div class="row">
+    <div class="col-6 mx-auto">
+        <h1>Update post</h1>
+        <p>Author: {{ object.author }}</p>
+        <form method="POST">{% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-dark">Send</button>
+        </form>
     </div>
 </div>
+
 {% endblock %}

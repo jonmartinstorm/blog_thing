@@ -2,23 +2,19 @@
 
 
 {% block content %}
-<div class = 'container'>
-    <div class="row">
-        <div class="col-6 mx-auto">
-            {% if object.image %}
-            <img src="{{ object.image.url }}" class="rounded img-fluid" alt="image">
-            {% endif %}
-            <h1>{{ object.title }}</h1>
-            <small class="text-muted">{{ object.author }} - {{ object.publish_date|date }}</small>
-            <p>{{ object.content|linebreaks }}</p>
-            <p>Todays date: {{ now|date:'j.b Y -- c' }}</p>
-            <!-- https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date -->
-            {% if request.user.is_authenticated %}
-                <a href="{% url 'blog:post-update' slug=object.slug %}">Edit</a>
-            {% endif %}
-        </div>
+<div class="row">
+    <div class="col-12 mx-auto">
+        {% if object.image %}
+        <img src="{{ object.image.url }}" class="img-fluid" alt="image">
+        {% endif %}
+        <h1>{{ object.title }}</h1>
+        <small class="text-muted">{{ object.author }} - {{ object.publish_date|date }}</small>
+        <p>{{ object.content|linebreaks }}</p>
+        <!-- https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date -->
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'blog:post-update' slug=object.slug %}">Edit</a>
+        {% endif %}
     </div>
 </div>
-
 
 {% endblock %}
