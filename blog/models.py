@@ -12,8 +12,6 @@ class BlogPostQuerySet(models.QuerySet):
         now = timezone.now()
         return self.filter(publish_date__lte=now)
 
-
-
 class BlogPostManager(models.Manager):
     def get_queryset(self):
         return BlogPostQuerySet(self.model, using=self._db)
@@ -21,13 +19,12 @@ class BlogPostManager(models.Manager):
     def published(self):
         return self.get_queryset().published()
 
-
-
 class BlogPost(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
     title = models.CharField(max_length=100)
     content = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to="image/", blank=True, null=True)
     publish_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

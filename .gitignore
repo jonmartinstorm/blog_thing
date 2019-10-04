@@ -1,5 +1,7 @@
 venv/
 static/
+staticfiles/
+media/
 secret/
 
 # Different settings on production...
