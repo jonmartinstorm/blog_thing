@@ -2,10 +2,10 @@ from django import forms
 
 from .models import BlogPost
 
-class BlogPostForm(forms.Form):
-    title = forms.CharField()
-    #slug = forms.SlugField()
-    content = forms.CharField(widget=forms.Textarea)
+# class BlogPostForm(forms.Form):
+#     title = forms.CharField()
+#     #slug = forms.SlugField()
+#     content = forms.CharField(widget=forms.Textarea)
 
 class BlogPostModelForm(forms.ModelForm):
 
@@ -13,8 +13,9 @@ class BlogPostModelForm(forms.ModelForm):
         model = BlogPost
         fields = ['title', 'content']
 
-
-# class ContactForm(forms.Form):
-#     full_name = forms.CharField()
-#     email = forms.EmailField()
-#     content = forms.CharField(widget=forms.Textarea)
+    def clean_title(self, *args, **kwargs):
+        title = self.cleaned_data.get("title")
+        qs = BlogPost.objects.filter(title__iexact=title)
+        if qs.exists():
+            raise forms.ValidationError("This title exists, use another")
+        return title

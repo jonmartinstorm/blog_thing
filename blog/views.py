@@ -4,10 +4,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import BlogPostForm, BlogPostModelForm
+from .forms import BlogPostModelForm
 from .models import BlogPost
 
 class BlogPostListView(ListView):
@@ -19,18 +18,6 @@ class BlogPostListView(ListView):
         context['now'] = timezone.now()
         return context
 
-# def blog_post_create_view(request):
-#     template_name = "blog/create_test.html"
-#     form = BlogPostForm(request.POST or None)
-#     if form.is_valid():
-#         print(form.cleaned_data)
-#         form = BlogPostForm()
-#     context = {
-#         "title": "Create new post",
-#         "form": form,
-#     }
-#     return render(request, template_name, context)
-
 class BlogCreateFormView(LoginRequiredMixin, FormView):
     template_name = "blog/create.html"
     form_class = BlogPostModelForm
@@ -38,6 +25,7 @@ class BlogCreateFormView(LoginRequiredMixin, FormView):
     login_url = '/'
 
     def form_valid(self, form):
+        form.instance.author = self.request.user
         form.save()
         return super().form_valid(form)
 
