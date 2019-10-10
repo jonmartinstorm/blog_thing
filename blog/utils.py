@@ -1,6 +1,5 @@
 from django.utils.text import slugify
 
-
 def unique_slug_generator(model_instance, title):
     """
     From tutorial: https://www.youtube.com/watch?v=hY5F3EGcff4 and modified to

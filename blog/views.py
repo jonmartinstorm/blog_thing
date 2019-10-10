@@ -43,14 +43,12 @@ class BlogPostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
-        # print("Django:", self.request.method, self.request.path, self.request.user)
         return context
 
 class BlogPostUpdateView(LoginRequiredMixin, UpdateView):
     model = BlogPost
     template_name = "blog/update.html"
     form_class = BlogPostModelForm
-    # success_url = '/'
 
     # 403 if user is not logged in.
     raise_exception = True
