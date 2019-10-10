@@ -33,7 +33,8 @@ class BlogPost(models.Model):
     objects = BlogPostManager()
 
     class Meta:
-        ordering = ['-publish_date', '-updated', '-timestamp']
+        # ordering = ['-publish_date', '-updated', '-timestamp']
+        ordering = ['-publish_date']
         base_manager_name = 'objects'
 
     def __str__(self):

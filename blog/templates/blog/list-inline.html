@@ -14,6 +14,6 @@
     <a href="{% url 'blog:post-detail' slug=post.slug %}" class="card-link">Les mer</a>
   </div>
   <div class="card-footer text-muted">
-    {{ post.publish_date|date:"jS M Y" }}
+    Publisert {{ post.publish_date|date:"jS M Y" }} - Sist oppdatert {{ post.updated|timesince }} siden
   </div>
 </div>

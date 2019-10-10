@@ -8,6 +8,7 @@ from .models import BlogPost
 #     content = forms.CharField(widget=forms.Textarea)
 
 class BlogPostModelForm(forms.ModelForm):
+    publish_date = forms.DateField(widget=forms.SelectDateWidget)
 
     class Meta:
         model = BlogPost
