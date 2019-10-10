@@ -1,6 +1,6 @@
 from django.utils import timezone
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+# from django.http import HttpResponse
+# from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView
@@ -18,20 +18,23 @@ class BlogPostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
+        # context['now'] = timezone.now()
         return context
 
 class BlogCreateFormView(LoginRequiredMixin, FormView):
     template_name = "blog/create.html"
     form_class = BlogPostModelForm
-    success_url = '.'
+    object = None
 
     # 403 if user is not logged in.
     raise_exception = True
 
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
     def form_valid(self, form):
         form.instance.author = self.request.user
-        form.save()
+        self.object = form.save()
         return super().form_valid(form)
 
 class BlogPostDetailView(DetailView):
@@ -47,7 +50,7 @@ class BlogPostUpdateView(LoginRequiredMixin, UpdateView):
     model = BlogPost
     template_name = "blog/update.html"
     form_class = BlogPostModelForm
-    success_url = '/'
+    # success_url = '/'
 
     # 403 if user is not logged in.
     raise_exception = True
