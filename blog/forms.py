@@ -1,14 +1,19 @@
 from django import forms
+from pagedown.widgets import AdminPagedownWidget
+from pagedown.widgets import PagedownWidget
 
 from .models import BlogPost
 
-# class BlogPostForm(forms.Form):
-#     title = forms.CharField()
-#     #slug = forms.SlugField()
-#     content = forms.CharField(widget=forms.Textarea)
+class BlogPostAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=AdminPagedownWidget())
+
+    class Meta:
+        model = BlogPost
+        fields = "__all__"
 
 class BlogPostModelForm(forms.ModelForm):
     publish_date = forms.DateField(widget=forms.SelectDateWidget)
+    content = forms.CharField(widget=PagedownWidget())
 
     class Meta:
         model = BlogPost

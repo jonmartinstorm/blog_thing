@@ -1,6 +1,5 @@
 from django.utils import timezone
-# from django.http import HttpResponse
-# from django.shortcuts import render, get_object_or_404
+from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView
@@ -8,6 +7,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import BlogPostModelForm
 from .models import BlogPost
+
+
+class AboutView(TemplateView):
+    template_name = "blog/about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+class ContactView(TemplateView):
+    template_name = "blog/contact.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class BlogPostListView(ListView):
     model = BlogPost

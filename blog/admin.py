@@ -1,7 +1,10 @@
 from django.contrib import admin
+from .forms import BlogPostAdminForm
 from .models import BlogPost
 
-class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'id', 'image')
 
-admin.site.register(BlogPost, BlogPostAdmin)
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    form = BlogPostAdminForm
+    #fields = "__all__"
+    list_display = ('title', 'slug', 'id', 'image')

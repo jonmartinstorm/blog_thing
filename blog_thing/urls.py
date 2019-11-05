@@ -18,13 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
-    #path('', include('construction.urls', namespace="construction")),
     path('', include('blog.urls', namespace="blog")),
-    #path('blog/', include('blog.urls', namespace="blog")),
-    path('about/', include('about.urls', namespace="about")),
-    path('contact/', include('contact.urls', namespace="contact")),
     path('baksiden/', admin.site.urls),
-    #path('kontoer/', include('django.contrib.auth.urls')),
 ]
 
 if settings.DEBUG:
