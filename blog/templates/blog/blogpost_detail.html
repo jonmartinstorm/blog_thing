@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% block head %}
+<style>
+  img.markdown-innhold {
+    background-color: linen;
+  }
+</style>
+{% endblock %}
+
 {% load markdown_deux_tags %}
 
 {% block content %}
@@ -10,10 +18,18 @@
         {% endif %}
         <h1>{{ object.title }}</h1>
         <small class="text-muted">{{ object.author }} - {{ object.publish_date|date }}</small>
-        <p>{{ object.content|markdown }}</p>
+        <div class="markdown-innhold">
+          <p>{{ object.content|markdown }}</p>
+        </div>
         {% if request.user.is_authenticated %}
             <a href="{% url 'blog:post-update' slug=object.slug %}">Oppdater</a>
         {% endif %}
+    </div>
+
+    <div class="col col-lg-4 mx-auto">
+        <h1>[å storme]</h1>
+        <p>Jeg er Jon-Martin, byråkrat og cybersikkerhetsentusiast.</p>
+        <p>Du har nå kommet over min lille verden der jeg legger ut ting jeg surrer med om cybersikkherhet, teknologi, prosjekter og alt mulig annet jeg finner på.</p>
     </div>
 </div>
 {% endblock %}

@@ -2,15 +2,16 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-lg-8 mx-auto">
-        <h1>[å storme]</h1>
+    <div class="col col-lg-8 mx-auto">
         {% for post in object_list %}
             {% include "blog/list-inline.html" with post=post %}
         {% endfor %}
     </div>
-    
-    <div class="col-lg-4 mx-auto">
-        <p>Aenean elit felis, mollis in lorem congue, ullamcorper molestie turpis. Nulla et nibh vel nibh lobortis semper id a odio. Donec lacinia velit in nisl mattis tristique. Integer ac ligula non lorem cursus rhoncus sed condimentum sem. Vestibulum lectus leo, ornare congue elit eu, molestie ullamcorper ligula. Proin faucibus laoreet odio id congue. Etiam tempus ante lorem, sed molestie augue pharetra vitae. Aliquam suscipit nisl eu luctus pharetra. Nunc vestibulum massa a posuere auctor. Integer scelerisque leo lorem, nec tincidunt nulla varius eget.</p>
+
+    <div class="col col-lg-4 mx-auto">
+        <h1>[å storme]</h1>
+        <p>Jeg er Jon-Martin, byråkrat og cybersikkerhetsentusiast.</p>
+        <p>Du har nå kommet over min lille verden der jeg legger ut ting jeg surrer med om cybersikkherhet, teknologi, prosjekter og alt mulig annet jeg finner på.</p>
     </div>
 </div>
 {% endblock %}
