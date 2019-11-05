@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.urls import reverse
 from .utils import unique_slug_generator
 
-
 User = settings.AUTH_USER_MODEL
 
 class BlogPostQuerySet(models.QuerySet):

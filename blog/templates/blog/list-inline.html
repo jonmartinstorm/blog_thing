@@ -9,11 +9,8 @@
     {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{ post.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ post.author.get_full_name }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{ post.author.get_full_name }} - publisert {{ post.publish_date|date }}, sist endret for {{ post.updated|timesince }} siden</h6>
     <p class="card-text">{{ post.content|markdown|truncatewords_html:30 }}</p>
     <a href="{% url 'blog:post-detail' slug=post.slug %}" class="card-link">Les mer</a>
-  </div>
-  <div class="card-footer text-muted">
-    Publisert {{ post.publish_date|date:"jS M Y" }} - Sist oppdatert {{ post.updated|timesince }} siden
   </div>
 </div>

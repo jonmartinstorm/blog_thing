@@ -14,10 +14,10 @@
 <div class="row">
     <div class="col col-lg-8 mx-auto">
         {% if object.image %}
-        <img src="{{ object.image.url }}" class="img-fluid" alt="image">
+        <img src="{{ object.image.url }}" class="img-fluid" alt="Tittelbilde" style="width:100%;object-fit:cover;height:30vh">
         {% endif %}
         <h1>{{ object.title }}</h1>
-        <small class="text-muted">{{ object.author }} - {{ object.publish_date|date }}</small>
+        <small class="text-muted">{{ object.author }} - publisert {{ object.publish_date|date }}, sist endret {{ object.updated|date }}</small>
         <div class="markdown-innhold">
           <p>{{ object.content|markdown }}</p>
         </div>
