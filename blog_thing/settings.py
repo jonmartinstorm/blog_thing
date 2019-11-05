@@ -17,11 +17,11 @@ import json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Import config file
-#with open(os.path.join(BASE_DIR, "secret/blog_config.json")) as config_file:
-#    config = json.load(config_file)
+with open(os.path.join(BASE_DIR, "secret/blog_config.json")) as config_file:
+    config = json.load(config_file)
 
-with open(os.path.join("etc/blog_config.json")) as config_file:
-     config = json.load(config_file)
+#with open(os.path.join("etc/blog_config.json")) as config_file:
+#     config = json.load(config_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -30,10 +30,10 @@ with open(os.path.join("etc/blog_config.json")) as config_file:
 SECRET_KEY = config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-#ALLOWED_HOSTS = ['127.0.0.1']
-ALLOWED_HOSTS = ['68.183.76.99','.storme.no','.heldorstorm.no']
+ALLOWED_HOSTS = ['127.0.0.1']
+#ALLOWED_HOSTS = ['68.183.76.99','.storme.no','.heldorstorm.no']
 
 
 # Application definition
@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'pagedown',
+    'markdown_deux',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +66,7 @@ ROOT_URLCONF = 'blog_thing.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nb-no'
 
 TIME_ZONE = 'Europe/Oslo'
 
@@ -133,3 +138,15 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles')
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# Other stuff
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+# LOGIN_REDIRECT_URL = '/'
