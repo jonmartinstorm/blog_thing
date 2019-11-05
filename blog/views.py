@@ -6,7 +6,7 @@ from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import BlogPostModelForm
-from .models import BlogPost
+from .models import BlogPost, Image
 
 
 class AboutView(TemplateView):
@@ -50,6 +50,11 @@ class BlogCreateFormView(LoginRequiredMixin, FormView):
         form.instance.author = self.request.user
         self.object = form.save()
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['images'] = Image.objects.all()
+        return context
 
 class BlogPostDetailView(DetailView):
     model = BlogPost

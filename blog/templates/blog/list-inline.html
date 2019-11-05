@@ -1,7 +1,7 @@
 {% load markdown_deux_tags %}
 <div class="card mb-3">
-    {% if post.image %}
-    <img src="{{post.image.url}}" class="card-img-top" style="width:100%;object-fit:cover;height:20vh">
+    {% if post.header_image %}
+    <img src="{{post.header_image.image.url}}" class="card-img-top" style="width:100%;object-fit:cover;height:20vh">
     {% else %}
     <div class="card-header">
         Post

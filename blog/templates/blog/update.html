@@ -1,5 +1,27 @@
 {% extends "base.html" %}
-{% block head %}{{ form.media }}{% endblock %}
+{% block head %}
+{{ form.media }}
+<style>
+.wmd-panel {
+    width: 100%;
+    margin: 0;
+}
+.wmd-button-bar {
+    background: none;
+}
+.wmd-preview{
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    margin: 20px 0 0 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background: #f8f8f8;
+}
+</style>
+{% endblock %}
 {% block head_title %}{{ title }}{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
@@ -14,6 +36,12 @@
         </form>
     </div>
     <div class="col-4 mx-auto">
+      <div style="max-height: 800px;overflow: scroll;">
+      {% for image in images %}
+        <img src="{{ image.image.url }}" class="img-fluid" alt="{{ image.image.url }}">
+        <p><small>{{ image.image.url }}</small></p>
+      {% endfor %}
+      </div>
       {% markdown_cheatsheet %}
     </div>
 </div>
