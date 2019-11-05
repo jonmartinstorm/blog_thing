@@ -16,8 +16,13 @@
         {% if object.header_image %}
         <img src="{{ object.header_image.image.url }}" class="img-fluid" alt="Tittelbilde" style="width:100%;object-fit:cover;height:30vh">
         {% endif %}
-        <h1>{{ object.title }}</h1>
-        <small class="text-muted">{{ object.author }} - publisert {{ object.publish_date|date }}, sist endret {{ object.updated|date }}</small>
+        <h1 class="display-4">{{ object.title }}</h1>
+        <p class="font-weight-bold text-uppercase">
+        {% for category in object.categories.all %}
+            <span style="padding-right:10px">{{ category }}</span>
+        {% endfor %}
+        </p>
+        <p class="text-muted">{{ object.author }} - publisert {{ object.publish_date|date }}, sist endret {{ object.updated|date }}</p>
         <div class="markdown-innhold">
           <p>{{ object.content|markdown }}</p>
         </div>
