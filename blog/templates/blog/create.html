@@ -35,6 +35,12 @@
         </form>
     </div>
     <div class="col-4 mx-auto">
+      <div style="max-height: 800px;overflow: scroll;">
+      {% for image in images %}
+        <img src="{{ image.image.url }}" class="img-fluid" alt="{{ image.image.url }}">
+        <p><small>{{ image.image.url }}</small></p>
+      {% endfor %}
+      </div>
       {% markdown_cheatsheet %}
     </div>
 </div>

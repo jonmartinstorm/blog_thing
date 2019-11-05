@@ -18,12 +18,20 @@ class BlogPostManager(models.Manager):
     def published(self):
         return self.get_queryset().published()
 
+class Image(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="image/", blank=False, null=True)
+
+    def __str__(self):
+        return self.image.url
+
 class BlogPost(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
     title = models.CharField(max_length=100)
     content = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to="image/", blank=True, null=True)
+    header_image = models.ForeignKey(Image, blank=False, null=True, on_delete=models.SET_NULL, related_name="header_image")
+    content_images = models.ManyToManyField(Image, related_name="content_images", blank=True)
     publish_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
