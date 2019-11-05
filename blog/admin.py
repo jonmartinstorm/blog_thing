@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .forms import BlogPostAdminForm
-from .models import BlogPost, Image
+from .models import BlogPost, Image, Category
 
 
 @admin.register(BlogPost)
@@ -11,4 +11,8 @@ class BlogPostAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Category)
+class CategroryAdmin(admin.ModelAdmin):
     pass

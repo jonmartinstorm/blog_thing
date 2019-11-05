@@ -25,6 +25,12 @@ class Image(models.Model):
     def __str__(self):
         return self.image.url
 
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
 class BlogPost(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
@@ -32,6 +38,7 @@ class BlogPost(models.Model):
     content = models.TextField(null=True, blank=True)
     header_image = models.ForeignKey(Image, blank=False, null=True, on_delete=models.SET_NULL, related_name="header_image")
     content_images = models.ManyToManyField(Image, related_name="content_images", blank=True)
+    categories = models.ManyToManyField(Category, blank=True)
     publish_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
