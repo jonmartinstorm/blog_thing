@@ -9,7 +9,7 @@
     {% endif %}
   <div class="card-body">
     <h1 class="card-title">{{ post.title }}</h1>
-    <h6 class="card-subtitle">{{ post.author.get_full_name }} - publisert {{ post.publish_date|date }}, sist endret for {{ post.updated|timesince }} siden</h6>
+    <p class="card-subtitle text-muted">{{ post.author.get_full_name }} - publisert {{ post.publish_date|date }}, sist endret for {{ post.updated|timesince }} siden</p>
     <p>{{ post.content|markdown|truncatewords_html:50 }}</p>
     <p><small class="font-weight-bold text-uppercase">
       {% for category in post.categories.all %}
